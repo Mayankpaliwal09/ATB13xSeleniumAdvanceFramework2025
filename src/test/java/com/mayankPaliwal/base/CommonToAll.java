@@ -1,36 +1,29 @@
 package com.mayankPaliwal.base;
 
+import com.mayankPaliwal.driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
 
 public class CommonToAll {
 
-//        public WebDriver driver;
-        public void openBrowser(WebDriver driver , String url ){
 
-//            if(browser.equalsIgnoreCase("chrome")){
-//                driver = new ChromeDriver();
-//            } else if (browser.equalsIgnoreCase("firefox")){
-//                driver = new FirefoxDriver();
-//            } else {
-//                driver = new ChromeDriver();
-//            }
-            driver.manage().window().maximize();
-            driver.get(url);
+    //we have to set browser
+    @BeforeMethod
+    public void setUp(){
+        DriverManager.init();
+    }
 
-        }
+    @AfterMethod
+    public void tearDown(){
+        DriverManager.down();
+    }
 
 
-//        public void  javaWait(int waitTime){
-//            try {
-//                Thread.sleep(waitTime);
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
 
     public static void closeBrowser(WebDriver driver){
         try {
